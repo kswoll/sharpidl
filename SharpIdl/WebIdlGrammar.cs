@@ -67,9 +67,76 @@ namespace SharpIdl
             return "\r\n"._() | "\r" | "\n";
         }
 
-        public virtual Expression Whitespace()
+        public virtual Expression WS()
         {
             return +("\t"._() | "\n" | "\r" | " " | ("//" + -(!NewLine() + Peg.Any)) | ("/*" + +(!"*/"._() + Peg.Any) + "*/"));
+        }
+
+        public virtual Expression ExtendedAttributeNamedArgList()
+        {
+            return Identifier() + "=" + Identifier() + "(" + ArgumentList() + ")";
+        }
+
+        public virtual Expression ArgumentList()
+        {
+            return ~Argument() + -(~WS() + "," + ~WS() + Argument());
+        }
+
+        public virtual Expression Argument()
+        {
+            return ExtendedAttributeList() + OptionalOrRequiredArgument();
+        }
+
+        public virtual Expression OptionalOrRequiredArgument()
+        {
+            return "optional"._();// + Type() + ArgumentName() + Default() | Type() + Ellipsis() + ArgumentName(); h
+        }
+
+        public virtual Expression ExtendedAttributeList()
+        {
+            return "[" + ~WS() + ExtendedAttribute() + -(~WS() + "," + ~WS() + ExtendedAttribute());
+        }
+
+        public virtual Expression ExtendedAttribute()
+        {
+            return "(" + ~WS() + ExtendedAttributeInner() + ~WS() + ExtendedAttributeRest() + ~WS() |
+                "[" + ~WS() + ExtendedAttributeInner() + ~WS() + "]" + ~WS() + ExtendedAttributeRest() |
+                "{" + ~WS() + ExtendedAttributeInner() + ~WS() + "}" + ~WS() + ExtendedAttributeRest() |
+                Other() + ExtendedAttributeRest();
+        }
+
+        public virtual Expression ExtendedAttributeRest()
+        {
+            return ExtendedAttribute();
+        }
+
+        public virtual Expression ExtendedAttributeInner()
+        {
+            return "(" + ~WS() + ExtendedAttributeInner() + ~WS() + ")" + ~WS() + ExtendedAttributeInner() |
+                "[" + ~WS() + ExtendedAttributeInner() + ~WS() + "]" + ~WS() + ExtendedAttributeInner() |
+                "{" + ~WS() + ExtendedAttributeInner() + ~WS() + "}" + ~WS() + ExtendedAttributeInner() |
+                OtherOrComma() + ExtendedAttributeInner();
+        }
+
+        public virtual Expression Other()
+        {
+            return Float() | Integer() | String() | "-" | "..." | "." | ":" | ";" | "<" | ">" | 
+                "=" | "?" | "Date" | "DOMString" | "Infinity" | "NaN" | "any" | "boolean" | "byte" | "double" |
+                "false" | "float" | "long" | "null" | "object" | "octet" | "or" | "optional" | "sequence" | 
+                "short" | "true" | "unsigned" | "void" | Identifier() | 
+                ArgumentNameKeyword();
+        }
+
+        public virtual Expression ArgumentNameKeyword()
+        {
+            return "argument"._() | "callback" | "const" | "creator" | "deleter" | "dictionary" | "enum" | 
+                "exception" | "getter" | "implements" | "inherit" | "interface" | "legacycaller" | "partial" | 
+                "setter" | "static" | "stringifier" | "typedef" | "unrestricted";
+        }
+
+        public virtual Expression OtherOrComma()
+        {
+            return Other() | ",";
         }
     }
 }

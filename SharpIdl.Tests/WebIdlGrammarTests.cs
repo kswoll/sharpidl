@@ -63,7 +63,7 @@ namespace SharpIdl.Tests
         [Test]
         public void Whitespace()
         {
-            var parser = new PegParser(WebIdlGrammar.Instance, WebIdlGrammar.Instance.GetNonterminal(x => x.Whitespace()));
+            var parser = new PegParser(WebIdlGrammar.Instance, WebIdlGrammar.Instance.GetNonterminal(x => x.WS()));
             Assert.NotNull(parser.ParseString("\n"));            
             Assert.NotNull(parser.ParseString("\r"));            
             Assert.NotNull(parser.ParseString("\r\n"));            
@@ -72,6 +72,48 @@ namespace SharpIdl.Tests
             Assert.NotNull(parser.ParseString(" // asdfasdfs"));            
             Assert.NotNull(parser.ParseString(" // asdfasdfs\r\n"));            
             Assert.NotNull(parser.ParseString(" /* asdf */ "));
+        }
+
+        [Test]
+        public void Other()
+        {
+            var parser = new PegParser(WebIdlGrammar.Instance, WebIdlGrammar.Instance.GetNonterminal(x => x.Other()));
+            Assert.NotNull(parser.ParseString("-1"));
+            Assert.NotNull(parser.ParseString("53"));
+            Assert.NotNull(parser.ParseString("1.534"));
+            Assert.NotNull(parser.ParseString("abcd"));
+            Assert.NotNull(parser.ParseString("\"abcd\""));
+            Assert.NotNull(parser.ParseString("-"));
+            Assert.NotNull(parser.ParseString("."));
+            Assert.NotNull(parser.ParseString("..."));
+            Assert.NotNull(parser.ParseString(":"));
+            Assert.NotNull(parser.ParseString(";"));
+            Assert.NotNull(parser.ParseString("<"));
+            Assert.NotNull(parser.ParseString(">"));
+            Assert.NotNull(parser.ParseString("="));
+            Assert.NotNull(parser.ParseString("?"));
+            Assert.NotNull(parser.ParseString("Date"));
+            Assert.NotNull(parser.ParseString("DOMString"));
+            Assert.NotNull(parser.ParseString("Infinity"));
+            Assert.NotNull(parser.ParseString("NaN"));
+            Assert.NotNull(parser.ParseString("any"));
+            Assert.NotNull(parser.ParseString("boolean"));
+            Assert.NotNull(parser.ParseString("byte"));
+            Assert.NotNull(parser.ParseString("double"));
+            Assert.NotNull(parser.ParseString("false"));
+            Assert.NotNull(parser.ParseString("float"));
+            Assert.NotNull(parser.ParseString("long"));
+            Assert.NotNull(parser.ParseString("null"));
+            Assert.NotNull(parser.ParseString("object"));
+            Assert.NotNull(parser.ParseString("octet"));
+            Assert.NotNull(parser.ParseString("or"));
+            Assert.NotNull(parser.ParseString("optional"));
+            Assert.NotNull(parser.ParseString("sequence"));
+            Assert.NotNull(parser.ParseString("short"));
+            Assert.NotNull(parser.ParseString("true"));
+            Assert.NotNull(parser.ParseString("unsigned"));
+            Assert.NotNull(parser.ParseString("void"));
+            
         }
     }
 }

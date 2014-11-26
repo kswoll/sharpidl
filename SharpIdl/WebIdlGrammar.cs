@@ -69,7 +69,7 @@ namespace SharpIdl
 
         public virtual Expression Whitespace()
         {
-            return +("\t"._() | "\n" | "\r" | " " | ("//" + !NewLine()) | ("/*" + +(!"*/"._() + Peg.Any) + "*/"));
+            return +("\t"._() | "\n" | "\r" | " " | ("//" + -(!NewLine() + Peg.Any)) | ("/*" + +(!"*/"._() + Peg.Any) + "*/"));
         }
     }
 }

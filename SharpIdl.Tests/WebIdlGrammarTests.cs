@@ -69,6 +69,9 @@ namespace SharpIdl.Tests
             Assert.NotNull(parser.ParseString("\r\n"));            
             Assert.NotNull(parser.ParseString(" "));            
             Assert.NotNull(parser.ParseString("\t"));            
+            Assert.NotNull(parser.ParseString(" // asdfasdfs"));            
+            Assert.NotNull(parser.ParseString(" // asdfasdfs\r\n"));            
+            Assert.NotNull(parser.ParseString(" /* asdf */ "));
         }
     }
 }

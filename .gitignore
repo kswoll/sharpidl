@@ -1,2 +1,6 @@
 SharpIdl/obj/
 SharpIdl/bin/
+*.suo
+*.user
+SharpIdl.Tests/obj/
+SharpIdl.Tests/bin/

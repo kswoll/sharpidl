@@ -3,16 +3,35 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpIdl", "SharpIdl\SharpIdl.csproj", "{190E3727-6B8C-46E2-8FAB-D7397E36719E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PEG", "packages\npeg\PEG\PEG.csproj", "{EBFDC314-9DB3-47BF-98BF-7AA81F4DD304}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpIdl.Tests", "SharpIdl.Tests\SharpIdl.Tests.csproj", "{8D37717A-9B9E-44A2-9CAF-9CA480857CE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Log|Any CPU = Log|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{190E3727-6B8C-46E2-8FAB-D7397E36719E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{190E3727-6B8C-46E2-8FAB-D7397E36719E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{190E3727-6B8C-46E2-8FAB-D7397E36719E}.Log|Any CPU.ActiveCfg = Release|Any CPU
+		{190E3727-6B8C-46E2-8FAB-D7397E36719E}.Log|Any CPU.Build.0 = Release|Any CPU
 		{190E3727-6B8C-46E2-8FAB-D7397E36719E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{190E3727-6B8C-46E2-8FAB-D7397E36719E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBFDC314-9DB3-47BF-98BF-7AA81F4DD304}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBFDC314-9DB3-47BF-98BF-7AA81F4DD304}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBFDC314-9DB3-47BF-98BF-7AA81F4DD304}.Log|Any CPU.ActiveCfg = Log|Any CPU
+		{EBFDC314-9DB3-47BF-98BF-7AA81F4DD304}.Log|Any CPU.Build.0 = Log|Any CPU
+		{EBFDC314-9DB3-47BF-98BF-7AA81F4DD304}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBFDC314-9DB3-47BF-98BF-7AA81F4DD304}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D37717A-9B9E-44A2-9CAF-9CA480857CE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D37717A-9B9E-44A2-9CAF-9CA480857CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D37717A-9B9E-44A2-9CAF-9CA480857CE8}.Log|Any CPU.ActiveCfg = Release|Any CPU
+		{8D37717A-9B9E-44A2-9CAF-9CA480857CE8}.Log|Any CPU.Build.0 = Release|Any CPU
+		{8D37717A-9B9E-44A2-9CAF-9CA480857CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D37717A-9B9E-44A2-9CAF-9CA480857CE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

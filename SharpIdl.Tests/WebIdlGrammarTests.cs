@@ -43,6 +43,32 @@ namespace SharpIdl.Tests
             Assert.IsNull(parser.ParseString("."));
         }
 
-//        [Test]
+        [Test]
+        public void Identifier()
+        {
+            var parser = new PegParser(WebIdlGrammar.Instance, WebIdlGrammar.Instance.GetNonterminal(x => x.Identifier()));
+            Assert.NotNull(parser.ParseString("abcd"));
+            Assert.NotNull(parser.ParseString("a1"));
+            Assert.NotNull(parser.ParseString("AEr3"));
+            Assert.IsNull(parser.ParseString("1a"));
+        }
+
+        [Test]
+        public void String()
+        {
+            var parser = new PegParser(WebIdlGrammar.Instance, WebIdlGrammar.Instance.GetNonterminal(x => x.String()));
+            Assert.NotNull(parser.ParseString("\"a\""));
+        }
+
+        [Test]
+        public void Whitespace()
+        {
+            var parser = new PegParser(WebIdlGrammar.Instance, WebIdlGrammar.Instance.GetNonterminal(x => x.Whitespace()));
+            Assert.NotNull(parser.ParseString("\n"));            
+            Assert.NotNull(parser.ParseString("\r"));            
+            Assert.NotNull(parser.ParseString("\r\n"));            
+            Assert.NotNull(parser.ParseString(" "));            
+            Assert.NotNull(parser.ParseString("\t"));            
+        }
     }
 }

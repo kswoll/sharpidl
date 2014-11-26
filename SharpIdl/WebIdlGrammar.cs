@@ -59,7 +59,7 @@ namespace SharpIdl
 
         public virtual Expression String()
         {
-            return '"' + -!'"'._() + '"';
+            return '"' + +(!'"'._() + Peg.Any) + '"';
         }
 
         public virtual Expression NewLine()
@@ -69,7 +69,7 @@ namespace SharpIdl
 
         public virtual Expression Whitespace()
         {
-            return +("\t"._() | "\n" | "\r" | " " | ("//" + !NewLine()) | ("/*" + -!"*/"._() + "*/"));
+            return +("\t"._() | "\n" | "\r" | " " | ("//" + !NewLine()) | ("/*" + +(!"*/"._() + Peg.Any) + "*/"));
         }
     }
 }

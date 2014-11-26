@@ -18,8 +18,27 @@ namespace SharpIdl.Tests
             Assert.NotNull(parser.ParseString("08"));
             Assert.NotNull(parser.ParseString("0x5"));
             Assert.NotNull(parser.ParseString("0xF1"));
+            Assert.NotNull(parser.ParseString("10"));
+            Assert.NotNull(parser.ParseString("-1"));
+            Assert.NotNull(parser.ParseString("-10"));
+            Assert.NotNull(parser.ParseString("-08"));
+            Assert.NotNull(parser.ParseString("-0xF1"));
 
             Assert.IsNull(parser.ParseString("0xGI"));
+            Assert.IsNull(parser.ParseString("9A"));
+            Assert.IsNull(parser.ParseString("09"));
+        }
+
+        [Test]
+        public void Float()
+        {
+            var parser = new PegParser(WebIdlGrammar.Instance, WebIdlGrammar.Instance.GetNonterminal(x => x.Float()));
+            Assert.NotNull(parser.ParseString("1."));
+            Assert.NotNull(parser.ParseString(".1"));
+            Assert.NotNull(parser.ParseString("1.1"));
+            Assert.NotNull(parser.ParseString("-1.1"));
+            Assert.NotNull(parser.ParseString("-.1"));
+            Assert.NotNull(parser.ParseString("-1."));
         }
     }
 }

@@ -39,6 +39,10 @@ namespace SharpIdl.Tests
             Assert.NotNull(parser.ParseString("-1.1"));
             Assert.NotNull(parser.ParseString("-.1"));
             Assert.NotNull(parser.ParseString("-1."));
+            Assert.NotNull(parser.ParseString("1e+10"));
+            Assert.IsNull(parser.ParseString("."));
         }
+
+//        [Test]
     }
 }

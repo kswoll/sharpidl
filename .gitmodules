@@ -1,0 +1,3 @@
+[submodule "packages/npeg"]
+	path = packages/npeg
+	url = https://github.com/kswoll/npeg.git
